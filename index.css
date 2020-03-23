@@ -1,0 +1,19 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    width: 100%;
+}
+
+canvas {
+    background-color: #9cd3db;
+    width: 70%;
+}
+
+#left-side {
+    width: 30%;
+}
+
+main {
+    display: flex;
+    height: 100%;
+}
