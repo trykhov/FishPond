@@ -1,15 +1,28 @@
-const LilyPad = require("./lilypad");
+const Lilypad = require("./lilypad");
 
-function Scenery(ctx) {
-    this.ctx = ctx;
-}
+class Scenery {
+    constructor(p5) {
+        this.canvasHeight = p5.height;
+        this.canvasWidth = p5.width;
+        this.p = p5;
 
-Scenery.prototype.populate = function(object, num) {
-    if(object instanceof LilyPad) {
-        for(let i = 0; i < num; i++) {
-            let lilypad = new LilyPad(this.ctx);
-            lilypad.draw();
+        this.lilypads = new Array(10);
+        for(let i = 0; i < this.lilypads.length; i++) {
+            this.lilypads[i] = new Lilypad(p5);
         }
+
+    }
+
+    populate(obj) {
+        if(obj instanceof Lilypad) {
+            for(let i = 0; i < this.lilypads.length; i++) {
+                this.lilypads[i].move();
+            }
+        }
+    }
+
+    ripple() {
+
     }
 }
 
