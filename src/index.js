@@ -1,3 +1,6 @@
+const Scenery = require("./scenery");
+const LilyPad = require("./lilypad");
+
 document.addEventListener("DOMContentLoaded", function() {
     let canvas = document.querySelector('canvas');
     let ctx = canvas.getContext('2d');
@@ -7,15 +10,20 @@ document.addEventListener("DOMContentLoaded", function() {
     let adjustWidth = getComputedStyle(canvas).getPropertyValue("width").slice(0, -2);
     canvas.setAttribute("height", adjustHeight * dpi);
     canvas.setAttribute("width", adjustWidth * dpi);
-
-    drawFish(ctx);
+    
+    let lilypad = new LilyPad(ctx);
+    let scenery = new Scenery(ctx, lilypad);
+    scenery.populate(20);
+    // lilypad.draw(ctx);
 })
  
-function drawFish(ctx) {
-    // console.log(ctx)
-    let x = Math.random() * ctx.canvas.width;
-    let y = Math.random() * ctx.canvas.height;
-    ctx.beginPath();
-    ctx.ellipse(x, y, 45, 10, Math.PI / 4, 0, 2 * Math.PI);
-    ctx.stroke();
-}
+
+
+// function drawFish(ctx) {
+//     // console.log(ctx)
+//     let x = Math.random() * ctx.canvas.width;
+//     let y = Math.random() * ctx.canvas.height;
+//     ctx.beginPath();
+//     ctx.ellipse(x, y, 45, 10, Math.PI / 4, 0, 2 * Math.PI);
+//     ctx.stroke();
+// }
