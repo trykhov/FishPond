@@ -22,7 +22,6 @@ LilyPad.prototype.draw = function() {
     ctx.arc(x, y, radius, 0, Math.PI);
     ctx.fillStyle = 'green';
     ctx.fill();
-    ctx.stroke();
     ctx.closePath();
     
     // second semicircle
@@ -33,7 +32,6 @@ LilyPad.prototype.draw = function() {
     ctx.arc(x, y, radius, startAngle2, endAngle2);
     ctx.fillStyle = 'green';
     ctx.fill();
-    ctx.stroke();
     ctx.closePath();
 }
 

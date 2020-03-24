@@ -4,7 +4,7 @@ html, body {
     width: 100%;
 }
 
-canvas {
+#pond {
     background-color: #9cd3db;
     width: 70%;
 }

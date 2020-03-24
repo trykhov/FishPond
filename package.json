@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "nodemon": "^2.0.2",
+    "p5": "^1.0.0",
     "paper": "^0.12.4"
   }
 }
