@@ -19,18 +19,17 @@ document.addEventListener("DOMContentLoaded", function() {
       scenery = new Scenery(p);
 
       school = new School();
-      for(let i = 0; i < 10; i++) {
+      for(let i = 0; i < 50; i++) {
         let fish = new Fish(p);
         school.addFish(fish);
       }
-      // console.log(school.fishes[0]);
-      // school.fishes[0].align(school.fishes);
+      // console.log(school.fishes[0])
     };
     
     p.draw = function() {
       p.clear();
-      // scenery.populate(lilypad);
       school.swim();
+      scenery.populate(lilypad);
     }
   };
   new p5(sketch, pond);

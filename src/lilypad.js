@@ -13,10 +13,10 @@ class Lilypad {
         let d = this.radius * 2;
         let angle = this.angle;
         // the translation below has shifted the location of the center
-        p.arc(0, 0, d, d, 0, angle);
-        p.pop(); // end container of the push()
         p.fill("green");
         p.noStroke();
+        p.arc(0, 0, d, d, 0, angle);
+        p.pop(); // end container of the push()
     }
 
     move() {

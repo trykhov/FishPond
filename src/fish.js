@@ -32,7 +32,7 @@ class Fish {
         let y = this.pos.y;
         let width = this.p5.width;
         let height = this.p5.height;
-
+        // console.log(height, this.pos.y)
         if(x < 0) this.pos.x = width;
         if(x > width) this.pos.x = 0;
 
@@ -53,7 +53,8 @@ class Fish {
             let distance = dummyVector.dist(this.pos, fishes[i].pos);
             // if they're too close
             if((distance > 0) && (distance < separateCo)) {
-                let diff = this.pos.sub(fishes[i].pos);
+                let diffVector = this.p5.createVector(0,0);
+                let diff = diffVector.sub(this.pos,fishes[i].pos);
                 // ??
                 diff.normalize();
                 diff.div(distance); // weigh the difference by the distance (how far means how much to steer)
@@ -122,15 +123,10 @@ class Fish {
         let p = this.p5;
         let head = this.velocity.heading() + this.p5.radians(90);
         p.fill(127);
-        p.stroke(200);
         p.push(); // saves the transformation for each fish
         p.translate(this.pos.x, this.pos.y);
         p.rotate(head);
-        p.beginShape();
-        p.vertex(0, -2 * this.r);
-        p.vertex(-this.r, 2 * this.r);
-        p.vertex(this.r, 2 * this.r);
-        p.endShape(p.CLOSE);
+        p.ellipse(0, 0, 15, 55);
         p.pop();
     }
 
