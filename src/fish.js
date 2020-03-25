@@ -10,6 +10,10 @@ class Fish {
         this.p5 = p5;
     }
 
+    draw() {
+        
+    }
+
     swim() {
 
     }
