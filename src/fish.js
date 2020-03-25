@@ -6,8 +6,12 @@ class Fish {
         this.acceleration = p5.createVector(0, 0);
         this.velocity = p5.createVector(2 * (Math.random() - 0.5), 2 * (Math.random() - 0.5));
         this.r = 3; // ???
-        this.maxSpeed = 2;
-        this.maxAccel = 0.05;
+        this.maxSpeed = 3;
+        this.maxAccel = 0.1;
+        // 
+        this.baseSize = Math.floor(Math.random() + 1) * 17;
+        this.bodyLength = this.baseSize * 2;
+        this.body = new Array(this.bodyLength).fill({...this.pos});
     }
 
     swim(fishes) {
@@ -32,7 +36,6 @@ class Fish {
         let y = this.pos.y;
         let width = this.p5.width;
         let height = this.p5.height;
-        // console.log(height, this.pos.y)
         if(x < 0) this.pos.x = width;
         if(x > width) this.pos.x = 0;
 
@@ -44,17 +47,17 @@ class Fish {
     // this determines whether or not the fish should avoid collision
     separate(fishes) {
         // looks for nearby fishes and swims away
-        let separateCo = 500; // separation coefficient (will play around with)
+        let separateCo = 100; // separation coefficient (will play around with)
         let steer = this.p5.createVector(0,0);
         let count = 0;
         for(let i = 0; i < fishes.length; i++) {
             // distance between this fish and the other fishes
-            let dummyVector = this.p5.createVector(0,0);
-            let distance = dummyVector.dist(this.pos, fishes[i].pos);
+            let dummyVector = this.p5.createVector(this.pos.x, this.pos.y);
+            let distance = dummyVector.dist(fishes[i].pos);
             // if they're too close
             if((distance > 0) && (distance < separateCo)) {
-                let diffVector = this.p5.createVector(0,0);
-                let diff = diffVector.sub(this.pos,fishes[i].pos);
+                let diffVector = this.p5.createVector(this.pos.x, this.pos.y);
+                let diff = diffVector.sub(fishes[i].pos);
                 // ??
                 diff.normalize();
                 diff.div(distance); // weigh the difference by the distance (how far means how much to steer)
@@ -76,12 +79,12 @@ class Fish {
     // Rule #2: Align
     // this determines the direction the fish should go to in relation to where the others are heading
     align(fishes) {
-        let farthestDist = 500;
+        let farthestDist = 300;
         let sum = this.p5.createVector(0,0);
         let count = 0;
         for(let i = 0; i < fishes.length; i++) {
-            let dummyVector = this.p5.createVector(0,0);
-            let distance = dummyVector.sub(this.pos, fishes[i].pos);
+            let dummyVector = this.p5.createVector(this.pos.x, this.pos.y);
+            let distance = dummyVector.dist(fishes[i].pos)
             if((distance > 0) && (distance < farthestDist)) {
                 sum.add(fishes[i].velocity);
                 count += 1;
@@ -105,8 +108,8 @@ class Fish {
         let sum = this.p5.createVector(0,0);
         let count = 0;
         for(let i = 0; i < fishes.length; i++) {
-            let dummyVector = this.p5.createVector(0,0);
-            let distance = dummyVector.dist(this.pos, fishes[i].pos);
+            let dummyVector = this.p5.createVector(this.pos.x, this.pos.y);
+            let distance = dummyVector.dist(fishes[i].pos);
             if((distance > 0) && (distance < farthestDist)) {
                 sum.add(fishes[i].pos);
                 count += 1;
@@ -119,20 +122,33 @@ class Fish {
         return this.p5.createVector(0,0);
     }
 
+    updateBody() {
+        this.body.unshift({...this.pos})
+        this.body.pop()
+    }
+
     draw() {
         let p = this.p5;
-        let head = this.velocity.heading() + this.p5.radians(90);
-        p.fill(127);
-        p.push(); // saves the transformation for each fish
-        p.translate(this.pos.x, this.pos.y);
-        p.rotate(head);
-        p.ellipse(0, 0, 15, 55);
-        p.pop();
+        p.noStroke();
+        // a fish is made of ellipses as cross sections
+        this.body.forEach((b, index) => {
+            let size
+            if ( index < this.bodyLength / 6 ) {
+                size = this.baseSize + index * 1.8
+            } else {
+                size = this.baseSize * 2 - index
+            }
+            let color = p.color('#E34427');
+            color.setAlpha(this.bodyLength - index);
+            p.fill(color);
+            p.ellipse(b.x, b.y, size, size)
+        })
     }
 
     // determine how fast to move towards a target
     seek(target) {
-        let desired = target.sub(this.pos);
+        let dummyVector = this.p5.createVector(target.x,target.y);
+        let desired = dummyVector.sub(this.pos);
         desired.normalize();
         desired.mult(this.maxSpeed)
         // According to Reynold's, steering = desired - velocity
@@ -148,6 +164,7 @@ class Fish {
         this.velocity.limit(this.maxSpeed)
         this.pos.add(this.velocity); // update the position
         this.acceleration.mult(0); // reset the acceleration
+        this.updateBody();
     }
 
 
@@ -156,9 +173,9 @@ class Fish {
         let seperate = this.separate(fishes);
         let align = this.align(fishes);
         let group = this.cohesion(fishes);
-        // randomly weigh these factors
-        let weights = [seperate.mult(1.5), align.mult(1), group.mult(1)]
-        // add these to the acceleration
+        // // randomly weigh these factors
+        let weights = [seperate.mult(2.5), align.mult(1), group.mult(1)]
+        // // add these to the acceleration
         for(let i in weights) {
             this.accelerate(weights[i]);
         }
