@@ -17,10 +17,11 @@ document.addEventListener("DOMContentLoaded", function() {
       canvas.parent('pond'); // put the canvas inside the pond container
       lilypad = new Lilypad(p);
       scenery = new Scenery(p);
-
+      const koiColors = ["#FFD021", "#F2F3F4", "#F16323", "#E34427"];
       school = new School();
-      for(let i = 0; i < 30; i++) {
-        let fish = new Fish(p);
+      for(let i = 0; i < 20; i++) {
+        let randColor = koiColors[Math.floor(Math.random() * 4)];
+        let fish = new Fish(p, randColor);
         school.addFish(fish);
       }
       // school.fishes[0].school(school.fishes)
@@ -29,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
     p.draw = function() {
       p.clear();
       school.swim();
-      // scenery.populate(lilypad);
+      scenery.populate(lilypad);
     }
   };
   new p5(sketch, pond);

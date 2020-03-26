@@ -1,6 +1,6 @@
 // will be our boid object
 class Fish {
-    constructor(p5) {
+    constructor(p5, color) {
         this.p5 = p5; // p5 object
         this.pos = p5.createVector(Math.random() * p5.width, Math.random() * p5.height);
         this.acceleration = p5.createVector(0, 0);
@@ -8,9 +8,10 @@ class Fish {
         this.r = 3; // ???
         this.maxSpeed = 3;
         this.maxAccel = 0.1;
+        this.color = this.p5.color(color);
         // 
-        this.baseSize = Math.floor(Math.random() + 1) * 17;
-        this.bodyLength = this.baseSize * 2;
+        this.baseSize = Math.floor(Math.random() * 17 + 10);
+        this.bodyLength = this.baseSize * Math.floor((Math.random() + 1) * 2);
         this.body = new Array(this.bodyLength).fill({...this.pos});
     }
 
@@ -138,9 +139,8 @@ class Fish {
             } else {
                 size = this.baseSize * 2 - index
             }
-            let color = p.color('#E34427');
-            color.setAlpha(this.bodyLength - index);
-            p.fill(color);
+            this.color.setAlpha(this.bodyLength - index);
+            p.fill(this.color);
             p.ellipse(b.x, b.y, size, size)
         })
     }
