@@ -2,11 +2,12 @@ const Scenery = require("./scenery");
 const Lilypad = require("./lilypad");
 const Fish = require("./fish");
 const School = require("./school");
-const p5 = require("../p5/p5");
 
 document.addEventListener("DOMContentLoaded", function() {
   let pond = document.getElementById("pond");
-  // let fish;
+  let audio = document.querySelector("audio")
+  audio.style.display = "none";
+
   let lilypad;
   let scenery;
   let school;
@@ -27,10 +28,28 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     
     p.draw = function() {
-      p.clear();
+      // p.clear();
       // school.swim();
-      scenery.populate(lilypad);
+      // scenery.populate(lilypad);
     }
   };
-  new p5(sketch, pond);
+
+  // audio sound
+  let soundOff = document.getElementById("volume-off");
+  let soundOn = document.getElementById("volume-on");
+  soundOff.addEventListener("click", function() {
+    audio.play();
+    audio.muted = false;
+    soundOff.style.display = "none";
+    soundOn.style.display = "inline";
+  })
+
+  soundOn.addEventListener("click", function() {
+    audio.muted = true;
+    soundOff.style.display = "inline";
+    soundOn.style.display = "none";
+  })
+
+  // animations
+  // new p5(sketch, pond);
 })

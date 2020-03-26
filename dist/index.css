@@ -1,19 +1,47 @@
-html, body {
+body, html {
     height: 100%;
     margin: 0;
+    font-family: sans-serif;
     width: 100%;
 }
+
+footer {
+    font-weight: 800;
+    width: 100%;
+}
+
+i:hover {
+    cursor: pointer;
+}
+
+#left-side {
+    text-align: center;
+    width: 30%;
+}
+
+#links {
+    display: flex;
+    justify-content: space-between;
+    margin: 5% auto;
+    width: 70%;
+}
+
+#links svg {
+    font-size: 3vw;
+}
+
+
+main {
+    display: flex;
+    height: 100%;
+}
+
 
 #pond {
     background-color: #9cd3db;
     width: 70%;
 }
 
-#left-side {
-    width: 30%;
-}
-
-main {
-    display: flex;
-    height: 100%;
+#volume-off, #volume-on {
+    font-size: 3vw;
 }

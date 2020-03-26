@@ -12,7 +12,6 @@ class Lilypad {
         let p = this.p5;
         let d = this.radius * 2;
         let angle = this.angle;
-        let pi = p.PI;
         let r = this.radius;
         // the translation below has shifted the location of the center
         p.noStroke();

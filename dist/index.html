@@ -4,16 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./index.css">
-    <title>Fish Pond</title>
+    <title>Koi Pond</title>
+    <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-auto-replace-svg="nest"></script>
     <script src="../p5/p5.min.js"></script>
     <script src="./main.js"></script>
 </head>
 <body>
     <main>
         <div id="left-side">
+            <h2>Meditative Koi Pond Animation</h2>
             <div id="controls">
+                <i id="volume-off" class="fas fa-volume-mute"></i>
+                <i id="volume-on" class="fas fa-volume-up" style="display:none"></i>
+                <audio controls autoplay loop>
+                    <source src="../assets/Running-water-sound.mp3" type="audio/mp3">
+                </audio>
+                <div id="content">
+
+                </div>
             </div>
             <footer>
+                <div id="links">
+                    <a href="https://www.linkedin.com/in/tckhov/">
+                        <i class="fab fa-linkedin" style="color:#2867B2"></i>
+                    </a>
+                    <a href="https://github.com/trykhov/FishPond">
+                        <i class="fab fa-github-square" style="color:#3E2C00"></i>
+                    </a>
+                    <a href="https://trykhov.com/">
+                        <i class="fas fa-user-circle" style="color:#8B0000"></i>
+                    </a>
+                </div>
                 <p>Created by Try Khov</p>
             </footer>
         </div>
