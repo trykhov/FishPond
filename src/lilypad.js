@@ -12,10 +12,38 @@ class Lilypad {
         let p = this.p5;
         let d = this.radius * 2;
         let angle = this.angle;
+        let pi = p.PI;
+        let r = this.radius;
         // the translation below has shifted the location of the center
         p.noStroke();
+        // lilypad stem
         p.fill("green");
         p.arc(0, 0, d, d, 0, angle);
+        // lilypad white flower
+        p.fill("white");
+        p.beginShape();
+        p.vertex(0.75 * r, 0);
+        p.vertex(0.25 * r, 0.25 * r);
+        p.vertex(0, 0.75 * r);
+        p.vertex(-0.25 * r, 0.25 * r);
+        p.vertex(-0.75 * r, 0);
+        p.vertex(-0.25 * r, -0.25 * r);
+        p.vertex(0, -0.75 * r);
+        p.vertex(0.25 * r, -0.25 * r);
+        p.endShape();
+
+        // pink flower
+        p.fill("pink");
+        p.beginShape();
+        p.vertex(0.375 * r, 0);
+        p.vertex(0.25 * r, 0.25 * r);
+        p.vertex(0, 0.375 * r);
+        p.vertex(-0.25 * r, 0.25 * r);
+        p.vertex(-0.375 * r, 0);
+        p.vertex(-0.25 * r, -0.25 * r);
+        p.vertex(0, -0.375 * r);
+        p.vertex(0.25 * r, -0.25 * r);
+        p.endShape();
         p.pop(); // end container of the push()
     }
 

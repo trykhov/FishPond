@@ -24,12 +24,11 @@ document.addEventListener("DOMContentLoaded", function() {
         let fish = new Fish(p, randColor);
         school.addFish(fish);
       }
-      // school.fishes[0].school(school.fishes)
     };
     
     p.draw = function() {
       p.clear();
-      school.swim();
+      // school.swim();
       scenery.populate(lilypad);
     }
   };
