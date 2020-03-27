@@ -1,8 +1,16 @@
 body, html {
+    /* font-family: sans-serif; */
+    font-family: 'Prompt', sans-serif;
     height: 100%;
     margin: 0;
-    font-family: sans-serif;
+    line-height: 2vw;
     width: 100%;
+}
+
+
+#content {
+    margin: 0 auto;
+    width: 80%;
 }
 
 footer {
@@ -14,9 +22,16 @@ i:hover {
     cursor: pointer;
 }
 
+h2 {
+    color: #fff;
+}
+
 #left-side {
+    align-items: center;
+    background-color: #dbc49c;
+    display: flex;
     text-align: center;
-    width: 30%;
+    width: 20%;
 }
 
 #links {
@@ -30,6 +45,10 @@ i:hover {
     font-size: 3vw;
 }
 
+li {
+    margin: 5% 0;
+}
+
 
 main {
     display: flex;
@@ -38,8 +57,12 @@ main {
 
 
 #pond {
-    background-color: #9cd3db;
-    width: 70%;
+    background-color: #65bbc7;
+    width: 80%;
+}
+
+ul {
+    padding: 0;
 }
 
 #volume-off, #volume-on {

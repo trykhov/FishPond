@@ -37,6 +37,7 @@ class Fish {
         let y = this.pos.y;
         let width = this.p5.width;
         let height = this.p5.height;
+
         if(x < 0) this.pos.x = width;
         if(x > width) this.pos.x = 0;
 
@@ -159,6 +160,15 @@ class Fish {
 
     // updates the properties after the 3 rules calculations
     update() {
+        let mouse = this.p5.createVector(this.p5.mouseX, this.p5.mouseY);
+        let xBound = (5 < mouse.x) && (mouse.x < this.p5.width);
+        let yBound = (20 < mouse.y) && (mouse.y < this.p5.height - 50);
+        // fish will follow mouse
+        if(xBound && yBound) {
+            mouse.sub(this.pos);
+            mouse.setMag(0.5);
+            this.acceleration = mouse;
+        }
         this.velocity.add(this.acceleration);
         // speed limit
         this.velocity.limit(this.maxSpeed)

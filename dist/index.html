@@ -6,37 +6,42 @@
     <link rel="stylesheet" href="./index.css">
     <title>Koi Pond</title>
     <script src="https://use.fontawesome.com/releases/v5.12.1/js/all.js" data-auto-replace-svg="nest"></script>
+    <link href="https://fonts.googleapis.com/css?family=Prompt&display=swap" rel="stylesheet">
     <script src="../p5/p5.min.js"></script>
     <script src="./main.js"></script>
 </head>
 <body>
     <main>
         <div id="left-side">
-            <h2>Meditative Koi Pond Animation</h2>
-            <div id="controls">
-                <i id="volume-off" class="fas fa-volume-mute"></i>
-                <i id="volume-on" class="fas fa-volume-up" style="display:none"></i>
-                <audio controls autoplay loop>
-                    <source src="../assets/Running-water-sound.mp3" type="audio/mp3">
-                </audio>
-                <div id="content">
-
+            <div>
+                <h2>Meditative Koi Pond Animation</h2>
+                <div id="controls">
+                    <i id="volume-off" class="fas fa-volume-mute"></i>
+                    <i id="volume-on" class="fas fa-volume-up" style="display:none"></i>
+                    <audio controls autoplay loop>
+                        <source src="../assets/Running-water-sound.mp3" type="audio/mp3">
+                    </audio>
+                    <div id="content">
+                        <p>Play around with the fishes while listening to the peaceful stream of the water</p>
+                        <p>Drag the cursor over the water and watch the fishes follow.</p>
+                        <p>Bring the cursor back to the sand (here) and observe the fishes in their natural state.</p>
+                    </div>
                 </div>
+                <footer>
+                    <div id="links">
+                        <a href="https://www.linkedin.com/in/tckhov/">
+                            <i class="fab fa-linkedin" style="color:#2867B2"></i>
+                        </a>
+                        <a href="https://github.com/trykhov/FishPond">
+                            <i class="fab fa-github-square" style="color:#3E2C00"></i>
+                        </a>
+                        <a href="https://trykhov.com/">
+                            <i class="fas fa-user-circle" style="color:#8B0000"></i>
+                        </a>
+                    </div>
+                    <p>Created by Try Khov</p>
+                </footer>
             </div>
-            <footer>
-                <div id="links">
-                    <a href="https://www.linkedin.com/in/tckhov/">
-                        <i class="fab fa-linkedin" style="color:#2867B2"></i>
-                    </a>
-                    <a href="https://github.com/trykhov/FishPond">
-                        <i class="fab fa-github-square" style="color:#3E2C00"></i>
-                    </a>
-                    <a href="https://trykhov.com/">
-                        <i class="fas fa-user-circle" style="color:#8B0000"></i>
-                    </a>
-                </div>
-                <p>Created by Try Khov</p>
-            </footer>
         </div>
         <div id="pond">
         </div>

@@ -1,7 +1,7 @@
 class Lilypad {
     constructor(p5) {
         this.pos = p5.createVector(Math.random() * p5.width, Math.random() * p5.height);
-        this.radius = (Math.random() + 1) * 25;
+        this.radius = (Math.random() + 1)  * 30;
         this.velocity = p5.createVector(2 * (Math.random() - 0.5), 2 * (Math.random() - 0.5));
         this.angle = p5.PI + (7 * p5.PI / 8);
         this.p5 = p5;

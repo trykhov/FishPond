@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
       scenery = new Scenery(p);
       const koiColors = ["#FFD021", "#F2F3F4", "#F16323", "#E34427"];
       school = new School();
-      for(let i = 0; i < 20; i++) {
+      for(let i = 0; i < 15; i++) {
         let randColor = koiColors[Math.floor(Math.random() * 4)];
         let fish = new Fish(p, randColor);
         school.addFish(fish);
@@ -51,5 +51,5 @@ document.addEventListener("DOMContentLoaded", function() {
   })
 
   // animations
-  // new p5(sketch, pond);
+  new p5(sketch, pond);
 })
