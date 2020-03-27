@@ -28,9 +28,9 @@ document.addEventListener("DOMContentLoaded", function() {
     };
     
     p.draw = function() {
-      // p.clear();
-      // school.swim();
-      // scenery.populate(lilypad);
+      p.clear();
+      school.swim();
+      scenery.populate(lilypad);
     }
   };
 
