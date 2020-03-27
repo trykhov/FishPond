@@ -135,11 +135,14 @@ class Fish {
         // a fish is made of ellipses as cross sections
         this.body.forEach((b, index) => {
             let size
+            // as you go further down the list, the body gets slimmer
             if ( index < this.bodyLength / 6 ) {
                 size = this.baseSize + index * 1.8
             } else {
                 size = this.baseSize * 2 - index
             }
+            // high concentration of color at the head and 
+            // low at the tail to give the effect of a tail
             this.color.setAlpha(this.bodyLength - index);
             p.fill(this.color);
             p.ellipse(b.x, b.y, size, size)
