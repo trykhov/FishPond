@@ -28,7 +28,20 @@ In addition, I want to credit [Weijia Li](https://unicar9.github.io/weijia/#page
 ### Flocking Simulation
 
 Code Snippet:
-![flock_code](./assets/flock_code.png)
+```
+school(fishes) {
+        // apply the rules of flock simulation
+        let seperate = this.separate(fishes);
+        let align = this.align(fishes);
+        let group = this.cohesion(fishes);
+        // // randomly weigh these factors
+        let weights = [seperate.mult(2.5), align.mult(1), group.mult(1)]
+        // // add these to the acceleration
+        for(let i in weights) {
+            this.accelerate(weights[i]);
+        }
+    }
+  ```
 
 The flocking algorithm is much more complicated than the code snippet shown above but much of what it does is as follows:
 
