@@ -30,18 +30,18 @@ In addition, I want to credit [Weijia Li](https://unicar9.github.io/weijia/#page
 Code Snippet:
 ```
 school(fishes) {
-        // apply the rules of flock simulation
-        let seperate = this.separate(fishes);
-        let align = this.align(fishes);
-        let group = this.cohesion(fishes);
-        // // randomly weigh these factors
-        let weights = [seperate.mult(2.5), align.mult(1), group.mult(1)]
-        // // add these to the acceleration
-        for(let i in weights) {
-            this.accelerate(weights[i]);
-        }
+    // apply the rules of flock simulation
+    let seperate = this.separate(fishes);
+    let align = this.align(fishes);
+    let group = this.cohesion(fishes);
+    // // randomly weigh these factors
+    let weights = [seperate.mult(2.5), align.mult(1), group.mult(1)]
+    // // add these to the acceleration
+    for(let i in weights) {
+        this.accelerate(weights[i]);
     }
-  ```
+}
+```
 
 The flocking algorithm is much more complicated than the code snippet shown above but much of what it does is as follows:
 
@@ -64,7 +64,27 @@ What's incredible is that each fish contributes to the movement of the entire sc
 ### Fish animation
 
 Code Snippet:
-![fish_code](./assets/fish_animation.png)
+```
+draw() {
+    let p = this.p5;
+    p.noStroke();
+    // a fish is made of ellipses as cross sections
+    this.body.forEach((b, index) => {
+        let size
+        // as you go further down the list, the body gets slimmer
+        if ( index < this.bodyLength / 6 ) {
+            size = this.baseSize + index * 1.8
+        } else {
+            size = this.baseSize * 2 - index
+        }
+        // high concentration of color at the head and 
+        // low at the tail to give the effect of a tail
+        this.color.setAlpha(this.bodyLength - index);
+        p.fill(this.color);
+        p.ellipse(b.x, b.y, size, size)
+    })
+}
+```
 
 The animation for the fish is rather interesting. Essentially the fish is made of a collection of circles overlapping each other with varying diameters. Starting from the head, that's where the largest circle will reside and as it goes down the body length, the cirlces get smaller. In addition, the color opacity is high starting at the head and goes lower as it goes to the end, which gives off the tail effect.
 
@@ -73,7 +93,26 @@ The animation for the fish is rather interesting. Essentially the fish is made o
 
 Code Snippet:
 
-![hover](./assets/hover_code.png)
+```
+// updates the properties after the 3 rules calculations
+update() {
+    let mouse = this.p5.createVector(this.p5.mouseX, this.p5.mouseY);
+    let xBound = (5 < mouse.x) && (mouse.x < this.p5.width);
+    let yBound = (20 < mouse.y) && (mouse.y < this.p5.height - 50);
+    // fish will follow mouse
+    if(xBound && yBound) {
+        mouse.sub(this.pos);
+        mouse.setMag(0.5);
+        this.acceleration = mouse;
+    }
+    this.velocity.add(this.acceleration);
+    // speed limit
+    this.velocity.limit(this.maxSpeed)
+    this.pos.add(this.velocity); // update the position
+    this.acceleration.mult(0); // reset the acceleration
+    this.updateBody();
+}
+```
 
 I wanted to add a feature that acted like the user was sticking their finger above a fish tank. Often, fishes will think of the finger as food and follow it to get a bite and I wanted to replicate something similar to that in the program.
 
